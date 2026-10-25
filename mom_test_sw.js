@@ -1,4 +1,4 @@
-const CACHE_NAME = "mom-test-pwa-v1";
+const CACHE_NAME = "mom-test-audio-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -28,6 +28,12 @@ self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
 
   const url = e.request.url;
+
+  // Let audio files stream directly (Range requests on iOS)
+  if (url.includes(".mp3") || url.includes("/audio/")) {
+    return;
+  }
+
   const isDoc =
     e.request.mode === "navigate" ||
     e.request.destination === "document" ||

@@ -1,64 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-  <title>Mom's Test — Customer Discovery Studio</title>
+  <title>The Mom Test — Audiobook Player</title>
+  
+  <!-- Apple Web App & PWA Settings -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Mom's Test">
-  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-title" content="Mom Test Audio">
+  <meta name="theme-color" content="#090d16">
   <link rel="manifest" href="mom_test_pwa.webmanifest">
   
-  <!-- Apple Touch Icon (Base64 SVG - iOS App Icon) -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%234f46e5'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='112' fill='url(%23g)'/%3E%3Ccircle cx='256' cy='256' r='140' fill='rgba(255,255,255,0.15)'/%3E%3Ctext x='256' y='330' font-size='220' text-anchor='middle' fill='%23ffffff'%3E🎯%3C/text%3E%3C/svg%3E">
+  <!-- iOS App Icon (Audiobook Theme) -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='112' fill='url(%23g)'/%3E%3Ccircle cx='256' cy='256' r='140' fill='rgba(255,255,255,0.15)'/%3E%3Ctext x='256' y='330' font-size='220' text-anchor='middle' fill='%23ffffff'%3E🎧%3C/text%3E%3C/svg%3E">
 
   <style>
     :root {
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --card-border: #1f2c47;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --primary: #6366f1;
+      --success: #10b981;
+      --safe-t: env(safe-area-inset-top, 20px);
+      --safe-b: env(safe-area-inset-bottom, 24px);
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+
+    [data-theme="light"] {
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --card-border: #e2e8f0;
-      --subpanel-bg: #f1f5f9;
-      --subpanel-border: #cbd5e1;
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --primary-light: rgba(79, 70, 229, 0.08);
-      --primary-border: rgba(79, 70, 229, 0.25);
-      --accent: #0284c7;
-      --success: #059669;
-      --success-light: #ecfdf5;
-      --warning: #d97706;
-      --warning-bg: #fffbeb;
-      --danger: #dc2626;
-      --danger-bg: #fef2f2;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --text-body: #334155;
-      --safe-t: env(safe-area-inset-top, 16px);
-      --safe-b: env(safe-area-inset-bottom, 20px);
-      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    [data-theme="dark"] {
-      --bg: #090d16;
-      --card-bg: #131b2e;
-      --card-border: #222f4c;
-      --subpanel-bg: #1c2742;
-      --subpanel-border: #2b3b5e;
-      --primary: #818cf8;
-      --primary-hover: #6366f1;
-      --primary-light: rgba(129, 140, 248, 0.15);
-      --primary-border: rgba(129, 140, 248, 0.3);
-      --accent: #38bdf8;
-      --success: #10b981;
-      --success-light: rgba(16, 185, 129, 0.15);
-      --warning: #f59e0b;
-      --warning-bg: rgba(245, 158, 11, 0.12);
-      --danger: #ef4444;
-      --danger-bg: rgba(239, 68, 68, 0.12);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-body: #cbd5e1;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --primary: #4f46e5;
+      --success: #059669;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -66,577 +50,725 @@
     body {
       font-family: var(--font-sans);
       background-color: var(--bg);
-      color: var(--text-body);
-      line-height: 1.45;
+      color: var(--text-main);
       padding-top: calc(var(--safe-t) + 12px);
-      padding-bottom: calc(var(--safe-b) + 80px);
-      padding-left: 16px;
-      padding-right: 16px;
-      max-width: 680px;
+      padding-bottom: calc(var(--safe-b) + 32px);
+      padding-left: 18px;
+      padding-right: 18px;
+      max-width: 600px;
       margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
     }
 
-    /* Top Nav */
-    header {
+    /* Top Bar */
+    .nav-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .brand {
-      display: flex;
+    .badge-audio {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.25);
     }
 
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #4f46e5, #0284c7);
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 6px;
+    }
+
+    /* Album Art & Hero Card */
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .album-cover {
+      width: 140px;
+      height: 140px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      margin: 0 auto 16px auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
+      position: relative;
     }
 
-    .brand-text h1 {
-      font-size: 1.15rem;
+    .album-icon {
+      font-size: 50px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    .album-tag {
+      font-size: 0.65rem;
       font-weight: 800;
-      color: var(--text-main);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(0,0,0,0.25);
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    .book-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 4px;
       letter-spacing: -0.3px;
     }
 
-    .brand-text p {
-      font-size: 0.72rem;
+    .book-author {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-weight: 600;
+      margin-bottom: 16px;
     }
 
-    .header-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .btn-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+    /* Track Display in Hero */
+    .now-playing-box {
+      background: rgba(0,0,0,0.15);
       border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    /* Anti-Fluff Shield Banner */
-    .shield-banner {
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(2, 132, 199, 0.08));
-      border: 1px solid var(--primary-border);
       border-radius: 12px;
       padding: 12px 14px;
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      margin-bottom: 18px;
+      text-align: left;
     }
 
-    .shield-title {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--primary);
+    .now-track-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .shield-rules {
-      font-size: 0.75rem;
-      color: var(--text-body);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 4px;
-    }
-
-    .shield-rules span {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    /* Form Cards */
-    .form-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .card-title {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-title span.badge {
-      font-size: 0.68rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .field {
-      margin-bottom: 12px;
-    }
-    .field:last-child {
-      margin-bottom: 0;
-    }
-
-    .field-label {
-      font-size: 0.75rem;
+    .now-track-title {
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 4px;
-      display: block;
+      margin: 2px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .field-hint {
-      font-size: 0.7rem;
+    .now-track-sub {
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
       line-height: 1.35;
     }
 
-    input[type="text"], textarea, select {
+    /* Progress & Scrubber */
+    .progress-area {
+      margin-bottom: 16px;
+    }
+
+    .scrubber {
+      -webkit-appearance: none;
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: inherit;
-      font-size: 0.88rem;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--card-border);
       outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      cursor: pointer;
     }
 
-    input[type="text"]:focus, textarea:focus, select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px var(--primary-light);
+    .scrubber::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      cursor: pointer;
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 64px;
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      margin-top: 6px;
     }
 
-    /* Commitment Pills */
-    .pill-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    /* Main Player Controls */
+    .controls-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .btn-control {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease, color 0.1s ease;
+    }
+    .btn-control:active { transform: scale(0.92); }
+
+    .btn-skip {
+      font-size: 1.35rem;
+      color: var(--text-muted);
+    }
+
+    .btn-play {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #090d16;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    .btn-play:hover { background: var(--accent-hover); }
+
+    /* Extra Tools: Speed & Sleep */
+    .tools-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--card-border);
+      padding-top: 14px;
+      margin-top: 6px;
+    }
+
+    .speed-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pill {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .pill.active {
+      background: var(--accent);
+      color: #090d16;
+      border-color: var(--accent);
+    }
+
+    .sleep-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sleep-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Chapter List */
+    .tracklist-header {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .tracklist {
+      display: flex;
+      flex-direction: column;
       gap: 8px;
     }
 
-    .pill-btn {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: var(--bg);
-      color: var(--text-main);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.15s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .pill-btn.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-
-    .pill-sub {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Bottom Fixed Action Bar */
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+    .track-card {
       background: var(--card-bg);
-      border-top: 1px solid var(--card-border);
-      padding: 10px 16px calc(var(--safe-b) + 10px) 16px;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px 14px;
       display: flex;
-      gap: 10px;
-      max-width: 680px;
-      margin: 0 auto;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .track-card:active {
+      transform: scale(0.98);
+    }
+    .track-card.active {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
     }
 
-    .btn-main {
-      flex: 2;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--primary);
-      color: #ffffff;
+    .track-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .track-card.active .track-num {
+      background: var(--accent);
+      color: #090d16;
+    }
+
+    .track-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .track-name {
       font-size: 0.88rem;
       font-weight: 700;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-    }
-
-    .btn-sec {
-      flex: 1;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--subpanel-bg);
       color: var(--text-main);
-      border: 1px solid var(--subpanel-border);
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Toast */
-    .toast {
-      position: fixed;
-      top: calc(var(--safe-t) + 16px);
-      left: 50%;
-      transform: translateX(-50%) translateY(-60px);
-      background: #0f172a;
-      color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      opacity: 0;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 9999;
-      pointer-events: none;
-    }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
-    /* Modal Sheet */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      display: none;
-      backdrop-filter: blur(4px);
-    }
-    .modal-overlay.active { display: block; }
-
-    .modal-sheet {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--card-bg);
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 20px 16px calc(var(--safe-b) + 24px) 16px;
-      max-width: 680px;
-      margin: 0 auto;
-      transform: translateY(100%);
-      transition: transform 0.25s ease-out;
-      z-index: 201;
-    }
-    .modal-sheet.open {
-      transform: translateY(0);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .modal-header h2 {
-      font-size: 1.05rem;
-      font-weight: 800;
-    }
-
-    /* History Entries */
-    .history-card {
-      background: var(--bg);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 10px;
-    }
-    .history-top {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 4px;
+    .track-desc {
       font-size: 0.72rem;
       color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
     }
-    .history-name {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 4px;
-    }
-    .history-actions {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .btn-sm {
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.7rem;
+
+    .track-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
       font-weight: 600;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      color: var(--text-main);
-      cursor: pointer;
+      flex-shrink: 0;
+      text-align: right;
     }
   </style>
 </head>
 <body>
 
   <!-- Top Bar -->
-  <header>
-    <div class="brand">
-      <div class="brand-icon">🎯</div>
-      <div class="brand-text">
-        <h1>Mom's Test Studio</h1>
-        <p>Customer Discovery & Truth Audit</p>
+  <div class="nav-bar">
+    <div class="badge-audio">🎧 Neural Audiobook · Unabridged</div>
+    <button class="theme-toggle" id="btnTheme" title="Toggle Theme">🌓</button>
+  </div>
+
+  <!-- Hero Player Card -->
+  <div class="hero-card">
+    <div class="album-cover">
+      <div class="album-icon">🎯</div>
+      <div class="album-tag">Audiobook</div>
+    </div>
+
+    <div class="book-title">The Mom Test</div>
+    <div class="book-author">By Rob Fitzpatrick · Narrated Unabridged</div>
+
+    <!-- Current Playing Details -->
+    <div class="now-playing-box">
+      <div class="now-track-num" id="nowNum">Track 01 of 10</div>
+      <div class="now-track-title" id="nowTitle">Introduction & Setup</div>
+      <div class="now-track-sub" id="nowSub">Excavating delicate archaeological sites & why founders do it wrong</div>
+    </div>
+
+    <!-- Scrubber -->
+    <div class="progress-area">
+      <input type="range" class="scrubber" id="progressBar" min="0" max="100" value="0">
+      <div class="time-row">
+        <span id="currentTime">00:00</span>
+        <span id="totalDuration">--:--</span>
       </div>
     </div>
-    <div class="header-actions">
-      <button class="btn-icon" id="btnRules" title="Cheatsheet Rules">📖</button>
-      <button class="btn-icon" id="btnHistory" title="History Log">📋 <span id="historyBadge" style="font-size:10px;margin-left:2px;">0</span></button>
-      <button class="btn-icon" id="btnTheme" title="Toggle Theme">🌓</button>
-    </div>
-  </header>
 
-  <!-- Pre-Interview Reality Guardrail -->
-  <div class="shield-banner">
-    <div class="shield-title">🛡️ The 3 Golden Rules (Rob Fitzpatrick)</div>
-    <div class="shield-rules">
-      <span>🚫 <strong>1. Talk about their life</strong>, NOT your idea or feature wishlist.</span>
-      <span>⏱️ <strong>2. Ask about past specifics</strong>, NOT future hypotheticals or opinions.</span>
-      <span>🤫 <strong>3. Listen > 80% of the time.</strong> If you're pitching, they're lying to be polite.</span>
+    <!-- Controls -->
+    <div class="controls-row">
+      <button class="btn-control btn-skip" id="btnPrev" title="Previous Chapter">⏮️</button>
+      <button class="btn-control btn-skip" id="btnRewind" title="Rewind 15s">⏪ 15s</button>
+      <button class="btn-control btn-play" id="btnPlay" title="Play / Pause">▶</button>
+      <button class="btn-control btn-skip" id="btnForward" title="Forward 15s">15s ⏩</button>
+      <button class="btn-control btn-skip" id="btnNext" title="Next Chapter">⏭️</button>
+    </div>
+
+    <!-- Speed & Sleep Tools -->
+    <div class="tools-row">
+      <div class="speed-pills">
+        <button class="pill active" onclick="setSpeed(1.0, this)">1.0×</button>
+        <button class="pill" onclick="setSpeed(1.25, this)">1.25×</button>
+        <button class="pill" onclick="setSpeed(1.5, this)">1.5×</button>
+        <button class="pill" onclick="setSpeed(1.75, this)">1.75×</button>
+        <button class="pill" onclick="setSpeed(2.0, this)">2.0×</button>
+      </div>
+      <button class="sleep-btn" id="btnSleep" onclick="cycleSleepTimer()">🌙 Sleep: Off</button>
     </div>
   </div>
 
-  <!-- Step 1: Contact & Stakeholder -->
-  <div class="form-card">
-    <div class="card-title">
-      <span>1. Stakeholder & Context</span>
-      <span class="badge">STEP 1</span>
-    </div>
-    <div class="field">
-      <label class="field-label">Who are you talking to?</label>
-      <input type="text" id="inputName" placeholder="e.g. Sarah Miller · Head of Analytics @ FinTechCo">
-    </div>
-    <div class="field">
-      <label class="field-label">Problem Hypothesis</label>
-      <input type="text" id="inputHypothesis" placeholder="e.g. dbt staging models breaking during upstream schema changes">
-    </div>
+  <!-- Chapters Tracklist -->
+  <div class="tracklist-header">
+    <span>Chapters (10 Tracks)</span>
+    <span id="totalBookTime">~2.5 Hours</span>
   </div>
 
-  <!-- Step 2: The 3 Core Mom Test Questions -->
-  <div class="form-card">
-    <div class="card-title">
-      <span>2. The 3 Core Mom Test Inquiries</span>
-      <span class="badge">STEP 2</span>
-    </div>
-
-    <!-- Question 1: Past Concrete Behavior -->
-    <div class="field">
-      <label class="field-label">Q1. Concrete Past Behavior (When & How)</label>
-      <div class="field-hint">“When was the last time this problem occurred? Walk me through what you did step-by-step.”</div>
-      <textarea id="inputStory" placeholder="Last Tuesday, our Shopify sync crashed at 3 AM. The data engineer manually ran a Python repair script for 2 hours..."></textarea>
-    </div>
-
-    <!-- Question 2: Current Workarounds & Spend -->
-    <div class="field">
-      <label class="field-label">Q2. Current Workaround & Spend ($ / Hours / Hacks)</label>
-      <div class="field-hint">“How are you dealing with it right now? What tools or internal hacks are you paying for?” (If $0 and 0 effort, it's NOT a real problem!)</div>
-      <textarea id="inputSpend" placeholder="Currently using 2 Zapier tasks ($50/mo) and an Excel sheet. Spent 15 hours last month fixing broken rows..."></textarea>
-    </div>
-
-    <!-- Question 3: Frustration & Root Impact -->
-    <div class="field">
-      <label class="field-label">Q3. Frustration & Impact (Who Got Hurt?)</label>
-      <div class="field-hint">“Why was that frustrating? What broke when it failed? Who got upset?”</div>
-      <textarea id="inputImpact" placeholder="VP of Sales saw stale pipeline numbers in the morning meeting and missed weekly forecasting..."></textarea>
-    </div>
+  <div class="tracklist" id="tracklistContainer">
+    <!-- Populated by JS -->
   </div>
 
-  <!-- Step 3: Skin in the Game / Commitment -->
-  <div class="form-card">
-    <div class="card-title">
-      <span>3. Skin in the Game (Commitment Check)</span>
-      <span class="badge">STEP 3</span>
-    </div>
-    <div class="field-hint" style="margin-bottom:8px;">Compliments mean nothing. Real interest requires a concrete investment:</div>
-    <div class="pill-grid">
-      <button type="button" class="pill-btn active" data-commit="time">
-        <span>⏳ Time Commitment</span>
-        <span class="pill-sub">Agreed to 45m pilot / follow-up</span>
-      </button>
-      <button type="button" class="pill-btn" data-commit="rep">
-        <span>🗣️ Reputation</span>
-        <span class="pill-sub">Agreed to intro to VP / Decision Maker</span>
-      </button>
-      <button type="button" class="pill-btn" data-commit="money">
-        <span>💰 Financial</span>
-        <span class="pill-sub">Deposit / LOI / Pre-order agreed</span>
-      </button>
-      <button type="button" class="pill-btn" data-commit="fluff">
-        <span>🚨 Pure Fluff / Compliments</span>
-        <span class="pill-sub">“Sounds great! Keep me posted”</span>
-      </button>
-    </div>
-    <div class="field" style="margin-top:10px;">
-      <label class="field-label">Commitment Detail / Next Step</label>
-      <input type="text" id="inputCommitmentDetail" placeholder="e.g. Scheduled live 45m screen share next Tuesday at 2 PM">
-    </div>
-  </div>
-
-  <!-- Step 4: Final Verdict -->
-  <div class="form-card">
-    <div class="card-title">
-      <span>4. Problem Verdict & Classification</span>
-      <span class="badge">STEP 4</span>
-    </div>
-    <div class="field">
-      <select id="selectVerdict">
-        <option value="🔥 Hair-on-Fire (Proven Spend + High Frustration + Commitment)">🔥 Hair-on-Fire (Proven Spend + High Frustration + Commitment)</option>
-        <option value="🟡 Mild Inconvenience (Annoyed, but workaround is acceptable)">🟡 Mild Inconvenience (Annoyed, but workaround is acceptable)</option>
-        <option value="❌ Phantom Need (Fluff, no spend, no past action)">❌ Phantom Need (Fluff, no spend, no past action)</option>
-      </select>
-    </div>
-    <div class="field">
-      <label class="field-label">Actionable Next Step (80/20 Micro-Action)</label>
-      <input type="text" id="inputNextAction" placeholder="e.g. Build 15m DuckDB script demo for Tuesday call; DO NOT build UI">
-    </div>
-  </div>
-
-  <!-- Bottom Action Bar -->
-  <div class="bottom-bar">
-    <button class="btn-sec" id="btnCopy">📋 Copy Note</button>
-    <button class="btn-main" id="btnSave">💾 Save Interview</button>
-    <button class="btn-sec" id="btnClear" style="flex:0.6;">Clear</button>
-  </div>
-
-  <!-- Toast Notification -->
-  <div class="toast" id="toast">Copied to clipboard!</div>
-
-  <!-- Modal Sheet: History -->
-  <div class="modal-overlay" id="historyOverlay"></div>
-  <div class="modal-sheet" id="historySheet">
-    <div class="modal-header">
-      <h2>📋 Saved Interviews (<span id="historyCount">0</span>)</h2>
-      <button class="btn-sm" id="btnCloseHistory">Close</button>
-    </div>
-    <div id="historyList">
-      <!-- Populated via JS -->
-    </div>
-  </div>
-
-  <!-- Modal Sheet: Cheatsheet Rules -->
-  <div class="modal-overlay" id="rulesOverlay"></div>
-  <div class="modal-sheet" id="rulesSheet">
-    <div class="modal-header">
-      <h2>📖 The Mom Test Cheatsheet</h2>
-      <button class="btn-sm" id="btnCloseRules">Close</button>
-    </div>
-    <div style="font-size:0.82rem;line-height:1.5;">
-      <h3 style="color:var(--primary);margin-bottom:6px;">🚨 Defusing Bad Data</h3>
-      <p style="margin-bottom:8px;"><strong>1. Compliments:</strong> Defuse by deflecting back to their life: <em>“Thanks! But how do you handle it today without this?”</em></p>
-      <p style="margin-bottom:8px;"><strong>2. Fluff (“I usually / I might”):</strong> Anchor to the past: <em>“When was the exact last time that happened?”</em></p>
-      <p style="margin-bottom:12px;"><strong>3. Feature Requests:</strong> Dig for the root problem: <em>“Why do you want that? What would that allow you to do?”</em></p>
-
-      <h3 style="color:var(--primary);margin-bottom:6px;">✅ Golden Questions</h3>
-      <ul style="padding-left:18px;margin-bottom:12px;">
-        <li>“Why do you bother doing that?”</li>
-        <li>“What are the implications if that doesn't get done?”</li>
-        <li>“Talk me through the last time that happened.”</li>
-        <li>“What else have you tried?”</li>
-        <li>“Where does the money or budget come from?”</li>
-      </ul>
-
-      <h3 style="color:var(--danger);margin-bottom:6px;">❌ Deadly Questions (Never Ask)</h3>
-      <ul style="padding-left:18px;">
-        <li>“Do you think this is a good idea?”</li>
-        <li>“Would you buy a product that did X?”</li>
-        <li>“How much would you pay for this?”</li>
-      </ul>
-    </div>
-  </div>
+  <audio id="audio" preload="metadata"></audio>
 
   <script>
-    const STORAGE_KEY = "mom_test_interviews_v1";
-    let activeCommitment = "time";
+    const CHAPTERS = [
+      {
+        id: "00",
+        title: "Introduction & Setup",
+        subtitle: "Excavating delicate archaeological sites & why founders get lied to",
+        file: "audio/00_Introduction.mp3",
+        duration: "6:18"
+      },
+      {
+        id: "01",
+        title: "Chapter 1: The Mom Test",
+        subtitle: "The 3 rules: talk about their life, ask about past specifics, listen more than talk",
+        file: "audio/01_The_Mom_Test.mp3",
+        duration: "20:47"
+      },
+      {
+        id: "02",
+        title: "Chapter 2: Avoiding Bad Data",
+        subtitle: "The 3 toxic traps: Compliments, Fluff (hypotheticals), and Feature Requests",
+        file: "audio/02_Avoiding_Bad_Data.mp3",
+        duration: "26:14"
+      },
+      {
+        id: "03",
+        title: "Chapter 3: Asking Important Questions",
+        subtitle: "Preparing your List of 3, uncovering world-ending risks & asking the dreaded questions",
+        file: "audio/03_Asking_Important_Questions.mp3",
+        duration: "25:00"
+      },
+      {
+        id: "04",
+        title: "Chapter 4: Keeping It Casual",
+        subtitle: "No formal pitch meetings, coffee chats, and conversational customer development",
+        file: "audio/04_Keeping_It_Casual.mp3",
+        duration: "9:12"
+      },
+      {
+        id: "05",
+        title: "Chapter 5: Commitment & Advancement",
+        subtitle: "The currency of commitment: Time, Reputation, and Cash vs False Enthusiasm",
+        file: "audio/05_Commitment_and_Advancement.mp3",
+        duration: "14:45"
+      },
+      {
+        id: "06",
+        title: "Chapter 6: Finding Conversations",
+        subtitle: "Warm intros, cold outreach, landing in natural habitats, and the Advisory Flip",
+        file: "audio/06_Finding_Conversations.mp3",
+        duration: "21:01"
+      },
+      {
+        id: "07",
+        title: "Chapter 7: Choosing Your Customers",
+        subtitle: "Customer segmentation, narrowing down early adopters, and slicing until you find fanatics",
+        file: "audio/07_Choosing_Your_Customers.mp3",
+        duration: "15:04"
+      },
+      {
+        id: "08",
+        title: "Chapter 8: Running the Process",
+        subtitle: "Note-taking protocols, debriefing in pairs, avoiding zombie meetings & sharing notes",
+        file: "audio/08_Running_the_Process.mp3",
+        duration: "18:14"
+      },
+      {
+        id: "09",
+        title: "Conclusion & Master Cheatsheet",
+        subtitle: "The complete Mom Test playbook & rapid diagnostic checklist",
+        file: "audio/09_Conclusion_and_Cheatsheet.mp3",
+        duration: "8:01"
+      }
+    ];
 
-    const toast = document.getElementById("toast");
-    function showToast(msg) {
-      toast.innerText = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2000);
+    let currentTrackIdx = 0;
+    let isPlaying = false;
+    let playbackRate = 1.0;
+    let sleepTimerMinutes = 0;
+    let sleepTimerTimeout = null;
+
+    const audio = document.getElementById("audio");
+    const btnPlay = document.getElementById("btnPlay");
+    const btnPrev = document.getElementById("btnPrev");
+    const btnNext = document.getElementById("btnNext");
+    const btnRewind = document.getElementById("btnRewind");
+    const btnForward = document.getElementById("btnForward");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeEl = document.getElementById("currentTime");
+    const totalDurationEl = document.getElementById("totalDuration");
+    const nowNumEl = document.getElementById("nowNum");
+    const nowTitleEl = document.getElementById("nowTitle");
+    const nowSubEl = document.getElementById("nowSub");
+    const tracklistEl = document.getElementById("tracklistContainer");
+    const btnTheme = document.getElementById("btnTheme");
+    const btnSleep = document.getElementById("btnSleep");
+
+    // Format mm:ss
+    function formatTime(secs) {
+      if (isNaN(secs)) return "00:00";
+      const m = Math.floor(secs / 60);
+      const s = Math.floor(secs % 60);
+      return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
-    // Commitment Pills
-    const pillBtns = document.querySelectorAll(".pill-btn");
-    pillBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        pillBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeCommitment = btn.getAttribute("data-commit");
-      });
+    // Render Tracklist
+    function renderTracklist() {
+      tracklistEl.innerHTML = CHAPTERS.map((c, i) => `
+        <div class="track-card ${i === currentTrackIdx ? 'active' : ''}" onclick="selectTrack(${i})">
+          <div class="track-num">${c.id}</div>
+          <div class="track-content">
+            <div class="track-name">${c.title}</div>
+            <div class="track-desc">${c.subtitle}</div>
+          </div>
+          <div class="track-meta">⏱️ ${c.duration}</div>
+        </div>
+      `).join("");
+    }
+
+    // Load Track
+    function loadTrack(idx, autoPlay = false) {
+      currentTrackIdx = idx;
+      const c = CHAPTERS[idx];
+      audio.src = c.file;
+      audio.playbackRate = playbackRate;
+
+      nowNumEl.innerText = `Track ${idx + 1} of ${CHAPTERS.length}`;
+      nowTitleEl.innerText = c.title;
+      nowSubEl.innerText = c.subtitle;
+
+      renderTracklist();
+      updateMediaSession(c);
+
+      // Save state to localStorage
+      localStorage.setItem("mom_test_last_track", idx);
+
+      if (autoPlay) {
+        audio.play().then(() => {
+          isPlaying = true;
+          btnPlay.innerText = "⏸";
+        }).catch(() => {});
+      }
+    }
+
+    // Select Track from List
+    window.selectTrack = function(idx) {
+      if (idx === currentTrackIdx && isPlaying) {
+        togglePlay();
+      } else {
+        loadTrack(idx, true);
+      }
+    };
+
+    // Toggle Play/Pause
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          isPlaying = true;
+          btnPlay.innerText = "⏸";
+        }).catch(err => console.error(err));
+      } else {
+        audio.pause();
+        isPlaying = false;
+        btnPlay.innerText = "▶";
+      }
+    }
+    btnPlay.addEventListener("click", togglePlay);
+
+    // Prev / Next
+    btnPrev.addEventListener("click", () => {
+      if (audio.currentTime > 5) {
+        audio.currentTime = 0;
+      } else if (currentTrackIdx > 0) {
+        loadTrack(currentTrackIdx - 1, true);
+      }
     });
 
-    // Theme Toggle
-    const btnTheme = document.getElementById("btnTheme");
-    const savedTheme = localStorage.getItem("mom_test_theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    btnNext.addEventListener("click", () => {
+      if (currentTrackIdx < CHAPTERS.length - 1) {
+        loadTrack(currentTrackIdx + 1, true);
+      }
+    });
 
+    // Skip 15s
+    btnRewind.addEventListener("click", () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 15);
+    });
+    btnForward.addEventListener("click", () => {
+      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15);
+    });
+
+    // Audio Event Listeners
+    audio.addEventListener("timeupdate", () => {
+      if (!isNaN(audio.duration) && audio.duration > 0) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressBar.value = pct;
+        currentTimeEl.innerText = formatTime(audio.currentTime);
+        totalDurationEl.innerText = formatTime(audio.duration);
+
+        // Auto save timestamp every few seconds
+        localStorage.setItem("mom_test_last_time", Math.floor(audio.currentTime));
+      }
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      totalDurationEl.innerText = formatTime(audio.duration);
+    });
+
+    // Auto Advance to next chapter
+    audio.addEventListener("ended", () => {
+      if (sleepTimerMinutes === "chapter") {
+        clearSleepTimer();
+        return;
+      }
+      if (currentTrackIdx < CHAPTERS.length - 1) {
+        loadTrack(currentTrackIdx + 1, true);
+      } else {
+        isPlaying = false;
+        btnPlay.innerText = "▶";
+      }
+    });
+
+    // Scrubber drag
+    progressBar.addEventListener("input", (e) => {
+      if (!isNaN(audio.duration)) {
+        audio.currentTime = (e.target.value / 100) * audio.duration;
+      }
+    });
+
+    // Speed Controller
+    window.setSpeed = function(rate, el) {
+      playbackRate = rate;
+      audio.playbackRate = rate;
+      document.querySelectorAll(".speed-pills .pill").forEach(p => p.classList.remove("active"));
+      el.classList.add("active");
+      localStorage.setItem("mom_test_speed", rate);
+    };
+
+    // Sleep Timer
+    const SLEEP_MODES = [0, 15, 30, 45, "chapter"];
+    let sleepModeIdx = 0;
+
+    window.cycleSleepTimer = function() {
+      sleepModeIdx = (sleepModeIdx + 1) % SLEEP_MODES.length;
+      const mode = SLEEP_MODES[sleepModeIdx];
+      sleepTimerMinutes = mode;
+
+      if (sleepTimerTimeout) clearTimeout(sleepTimerTimeout);
+
+      if (mode === 0) {
+        btnSleep.innerText = "🌙 Sleep: Off";
+        btnSleep.classList.remove("active");
+      } else if (mode === "chapter") {
+        btnSleep.innerText = "🌙 End of Ch.";
+        btnSleep.classList.add("active");
+      } else {
+        btnSleep.innerText = `🌙 ${mode} min`;
+        btnSleep.classList.add("active");
+        sleepTimerTimeout = setTimeout(() => {
+          audio.pause();
+          isPlaying = false;
+          btnPlay.innerText = "▶";
+          clearSleepTimer();
+        }, mode * 60 * 1000);
+      }
+    };
+
+    function clearSleepTimer() {
+      sleepModeIdx = 0;
+      sleepTimerMinutes = 0;
+      if (sleepTimerTimeout) clearTimeout(sleepTimerTimeout);
+      btnSleep.innerText = "🌙 Sleep: Off";
+      btnSleep.classList.remove("active");
+    }
+
+    // MediaSession API (Lock Screen & Background Audio Control on iOS)
+    function updateMediaSession(c) {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: c.title,
+          artist: "Rob Fitzpatrick",
+          album: "The Mom Test",
+          artwork: [
+            {
+              src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%236366f1'/%3E%3Ctext x='256' y='330' font-size='220' text-anchor='middle' fill='%23ffffff'%3E🎧%3C/text%3E%3C/svg%3E",
+              sizes: "512x512",
+              type: "image/svg+xml"
+            }
+          ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => togglePlay());
+        navigator.mediaSession.setActionHandler('pause', () => togglePlay());
+        navigator.mediaSession.setActionHandler('seekbackward', () => { audio.currentTime = Math.max(0, audio.currentTime - 15); });
+        navigator.mediaSession.setActionHandler('seekforward', () => { audio.currentTime = Math.min(audio.duration, audio.currentTime + 15); });
+        navigator.mediaSession.setActionHandler('previoustrack', () => {
+          if (currentTrackIdx > 0) loadTrack(currentTrackIdx - 1, true);
+        });
+        navigator.mediaSession.setActionHandler('nexttrack', () => {
+          if (currentTrackIdx < CHAPTERS.length - 1) loadTrack(currentTrackIdx + 1, true);
+        });
+      }
+    }
+
+    // Theme Toggle
+    const savedTheme = localStorage.getItem("mom_test_theme") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
     btnTheme.addEventListener("click", () => {
       const cur = document.documentElement.getAttribute("data-theme");
       const next = cur === "dark" ? "light" : "dark";
@@ -644,199 +776,34 @@
       localStorage.setItem("mom_test_theme", next);
     });
 
-    // Build Markdown helper
-    function getFormData() {
-      const now = new Date();
-      return {
-        id: "mt_" + Date.now(),
-        date: now.toISOString().split("T")[0],
-        time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        name: document.getElementById("inputName").value.trim() || "Anonymous Stakeholder",
-        hypothesis: document.getElementById("inputHypothesis").value.trim() || "Unspecified Hypothesis",
-        story: document.getElementById("inputStory").value.trim() || "None recorded",
-        spend: document.getElementById("inputSpend").value.trim() || "None recorded",
-        impact: document.getElementById("inputImpact").value.trim() || "None recorded",
-        commitmentType: activeCommitment,
-        commitmentDetail: document.getElementById("inputCommitmentDetail").value.trim() || "None",
-        verdict: document.getElementById("selectVerdict").value,
-        nextAction: document.getElementById("inputNextAction").value.trim() || "None"
-      };
-    }
+    // Auto Restore Last Played Session
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedTrack = parseInt(localStorage.getItem("mom_test_last_track") || "0", 10);
+      const savedTime = parseFloat(localStorage.getItem("mom_test_last_time") || "0");
+      const savedSpeed = parseFloat(localStorage.getItem("mom_test_speed") || "1.0");
 
-    function formatMarkdown(data) {
-      return `### 🎯 Mom's Test Interview: ${data.name} (${data.date})
+      playbackRate = savedSpeed;
+      loadTrack(savedTrack, false);
 
-> **Problem Hypothesis**: ${data.hypothesis}  
-> **Verdict**: ${data.verdict}  
-> **Commitment**: ${data.commitmentType.toUpperCase()} — ${data.commitmentDetail}
+      // Restore time once audio can play
+      audio.addEventListener("canplay", function onCanPlay() {
+        if (savedTime > 0 && savedTime < audio.duration) {
+          audio.currentTime = savedTime;
+        }
+        audio.removeEventListener("canplay", onCanPlay);
+      });
 
-#### 1. Factual Past Story (Concrete Behavior)
-${data.story}
-
-#### 2. Current Workarounds & Budget Spent ($ / Hours / Hacks)
-${data.spend}
-
-#### 3. Root Frustration & Impact
-${data.impact}
-
-#### 🎯 Actionable Next Step
-${data.nextAction}
-`;
-    }
-
-    // Save to LocalStorage
-    function getStoredInterviews() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveInterview(data) {
-      const list = getStoredInterviews();
-      list.unshift(data);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-      updateHistoryUI();
-    }
-
-    document.getElementById("btnSave").addEventListener("click", () => {
-      const data = getFormData();
-      if (!data.name || data.name === "Anonymous Stakeholder") {
-        if (!confirm("Save without stakeholder name?")) return;
-      }
-      saveInterview(data);
-      showToast("✅ Interview saved to phone!");
-    });
-
-    // Copy Markdown
-    document.getElementById("btnCopy").addEventListener("click", () => {
-      const data = getFormData();
-      const md = formatMarkdown(data);
-      navigator.clipboard.writeText(md).then(() => {
-        showToast("📋 Markdown copied!");
-      }).catch(() => {
-        const ta = document.createElement("textarea");
-        ta.value = md;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        showToast("📋 Markdown copied!");
+      // Highlight correct speed pill
+      document.querySelectorAll(".speed-pills .pill").forEach(p => {
+        if (parseFloat(p.innerText) === playbackRate) {
+          p.classList.add("active");
+        } else {
+          p.classList.remove("active");
+        }
       });
     });
 
-    // Clear
-    document.getElementById("btnClear").addEventListener("click", () => {
-      if (confirm("Clear all form fields?")) {
-        document.getElementById("inputName").value = "";
-        document.getElementById("inputHypothesis").value = "";
-        document.getElementById("inputStory").value = "";
-        document.getElementById("inputSpend").value = "";
-        document.getElementById("inputImpact").value = "";
-        document.getElementById("inputCommitmentDetail").value = "";
-        document.getElementById("inputNextAction").value = "";
-        showToast("Form cleared");
-      }
-    });
-
-    // History Sheet & Overlay
-    const historySheet = document.getElementById("historySheet");
-    const historyOverlay = document.getElementById("historyOverlay");
-    const historyBadge = document.getElementById("historyBadge");
-    const historyCount = document.getElementById("historyCount");
-    const historyList = document.getElementById("historyList");
-
-    function openHistory() {
-      historyOverlay.classList.add("active");
-      historySheet.classList.add("open");
-    }
-    function closeHistory() {
-      historyOverlay.classList.remove("active");
-      historySheet.classList.remove("open");
-    }
-
-    document.getElementById("btnHistory").addEventListener("click", openHistory);
-    document.getElementById("btnCloseHistory").addEventListener("click", closeHistory);
-    historyOverlay.addEventListener("click", closeHistory);
-
-    function updateHistoryUI() {
-      const list = getStoredInterviews();
-      historyBadge.innerText = list.length;
-      historyCount.innerText = list.length;
-
-      if (list.length === 0) {
-        historyList.innerHTML = `<div style="text-align:center;padding:30px 0;color:var(--text-muted);font-size:0.85rem;">No saved interviews yet. Complete your first discovery call!</div>`;
-        return;
-      }
-
-      historyList.innerHTML = list.map((item, idx) => `
-        <div class="history-card">
-          <div class="history-top">
-            <span>📅 ${item.date} ${item.time}</span>
-            <span>${item.verdict.split(' ')[0]}</span>
-          </div>
-          <div class="history-name">${item.name}</div>
-          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:6px;">Hypothesis: ${item.hypothesis}</div>
-          <div class="history-actions">
-            <button class="btn-sm" onclick="copyHistoryItem(${idx})">📋 Copy</button>
-            <button class="btn-sm" onclick="loadHistoryItem(${idx})">✏️ Load</button>
-            <button class="btn-sm" style="color:var(--danger);" onclick="deleteHistoryItem(${idx})">🗑️</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    window.copyHistoryItem = function(idx) {
-      const list = getStoredInterviews();
-      if (!list[idx]) return;
-      const md = formatMarkdown(list[idx]);
-      navigator.clipboard.writeText(md).then(() => showToast("📋 Note copied!"));
-    };
-
-    window.loadHistoryItem = function(idx) {
-      const list = getStoredInterviews();
-      const item = list[idx];
-      if (!item) return;
-      document.getElementById("inputName").value = item.name;
-      document.getElementById("inputHypothesis").value = item.hypothesis;
-      document.getElementById("inputStory").value = item.story;
-      document.getElementById("inputSpend").value = item.spend;
-      document.getElementById("inputImpact").value = item.impact;
-      document.getElementById("inputCommitmentDetail").value = item.commitmentDetail;
-      document.getElementById("selectVerdict").value = item.verdict;
-      document.getElementById("inputNextAction").value = item.nextAction;
-      closeHistory();
-      showToast("Loaded into form");
-    };
-
-    window.deleteHistoryItem = function(idx) {
-      if (!confirm("Delete this entry?")) return;
-      const list = getStoredInterviews();
-      list.splice(idx, 1);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-      updateHistoryUI();
-      showToast("Deleted");
-    };
-
-    // Rules Sheet & Overlay
-    const rulesSheet = document.getElementById("rulesSheet");
-    const rulesOverlay = document.getElementById("rulesOverlay");
-    document.getElementById("btnRules").addEventListener("click", () => {
-      rulesOverlay.classList.add("active");
-      rulesSheet.classList.add("open");
-    });
-    function closeRules() {
-      rulesOverlay.classList.remove("active");
-      rulesSheet.classList.remove("open");
-    }
-    document.getElementById("btnCloseRules").addEventListener("click", closeRules);
-    rulesOverlay.addEventListener("click", closeRules);
-
-    // Initial update
-    updateHistoryUI();
-
-    // Register Service Worker for offline PWA
+    // Register PWA Service Worker for offline
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./mom_test_sw.js').catch(() => {});
